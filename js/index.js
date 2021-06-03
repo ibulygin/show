@@ -1,1 +1,130 @@
-(()=>{const t=document.querySelector(".cartoon-cat__cat"),e=document.querySelector(".block-about__description"),n=e.getBoundingClientRect(),s=document.querySelectorAll(".anime"),d=document.querySelectorAll(".cat-hand"),r=document.querySelectorAll(".cat-hand-inverse"),a=document.querySelectorAll(".move-end");function c(e){var t=e.getBoundingClientRect(),n=window.pageXOffset||document.documentElement.scrollLeft,e=window.pageYOffset||document.documentElement.scrollTop;return{top:t.top+e,left:t.left+n}}window.addEventListener("scroll",()=>{var e=window.pageYOffset;Number.parseInt(e)>=Number.parseInt(n.top)&&!t.classList.contains("move")&&t.classList.add("move")}),0<s.length&&window.addEventListener("scroll",function(){for(let t=0;t<s.length;t++){const i=s[t];var n=i.offsetHeight,o=c(i).top;let e=window.innerHeight-n/4;n>window.innerHeight&&(e=window.innerHeight-window.innerHeight/4),pageYOffset>o-e&&pageYOffset<o+n?i.classList.add("active"):i.classList.remove("active")}}),0<d.length&&window.addEventListener("scroll",function(){for(let t=0;t<d.length;t++){const i=d[t];var n=i.offsetHeight,o=c(i).top;let e=window.innerHeight-n/4;n>window.innerHeight&&(e=window.innerHeight-window.innerHeight/4),pageYOffset>o-e&&pageYOffset<o+n?i.classList.add("cat-hand-move"):i.classList.remove("cat-hand-move")}}),0<r.length&&window.addEventListener("scroll",function(){for(let t=0;t<r.length;t++){const i=r[t];var n=i.offsetHeight,o=c(i).top;let e=window.innerHeight-n/4;n>window.innerHeight&&(e=window.innerHeight-window.innerHeight/4),pageYOffset>o-e&&pageYOffset<o+n?i.classList.add("cat-hand-move-inverse"):i.classList.remove("cat-hand-move-inverse")}}),0<a.length&&window.addEventListener("scroll",function(){for(let t=0;t<a.length;t++){const i=a[t];var n=i.offsetHeight,o=c(i).top;let e=window.innerHeight-n/4;n>window.innerHeight&&(e=window.innerHeight-window.innerHeight/4),pageYOffset>o-e&&pageYOffset<o+n?i.classList.add("cat-hand-move-end"):i.classList.remove("cat-hand-move-end")}})})();
+(() => {
+    const cat = document.querySelector('.cartoon-cat__cat');
+    const about = document.querySelector('.block-about__description');
+    const coorAbout = about.getBoundingClientRect();
+    const animItems = document.querySelectorAll('.anime');
+    const animItemsMove = document.querySelectorAll('.cat-hand');
+    const animItemsMoveInverse = document.querySelectorAll('.cat-hand-inverse');
+    const animItemsMoveEnd = document.querySelectorAll('.move-end');
+
+    window.addEventListener('scroll', () => {
+        const scroll = window.pageYOffset;
+        if(Number.parseInt(scroll) >= Number.parseInt(coorAbout.top) && !cat.classList.contains('move')){
+            cat.classList.add('move')
+        }
+    });
+
+
+
+    if(animItems.length > 0) {
+        window.addEventListener('scroll', animOnscrollEmergence)
+        function animOnscrollEmergence() {
+            for(let index=0; index < animItems.length; index++) {
+                const animItem = animItems[index];
+                const animItemHeight = animItem.offsetHeight;
+                const animItemOffset = offset(animItem).top;
+                const animStart = 4;
+
+                let animItemPoint = window.innerHeight - animItemHeight / animStart;
+
+                if(animItemHeight > window.innerHeight) {
+                    animItemPoint = window.innerHeight - window.innerHeight / animStart;
+                }
+
+                if((pageYOffset > animItemOffset - animItemPoint) && pageYOffset  < (animItemOffset + animItemHeight)) {
+                    animItem.classList.add('active');
+                } else {
+                    animItem.classList.remove('active');
+                }
+            }
+        }
+
+    }
+
+    if(animItemsMove.length > 0) {
+        window.addEventListener('scroll', animOnscrollMove)
+        function animOnscrollMove() {
+            for(let index = 0; index < animItemsMove.length; index++) {
+                const animItem = animItemsMove[index];
+                const animItemHeight = animItem.offsetHeight;
+                const animItemOffset = offset(animItem).top;
+                const animStart = 4;
+
+                let animItemPoint = window.innerHeight - animItemHeight / animStart;
+
+                if(animItemHeight > window.innerHeight) {
+                    animItemPoint = window.innerHeight - window.innerHeight / animStart;
+                }
+
+                if((pageYOffset > animItemOffset - animItemPoint) && pageYOffset  < (animItemOffset + animItemHeight)) {
+                    animItem.classList.add('cat-hand-move');
+                } else {
+                    animItem.classList.remove('cat-hand-move');
+                }
+            }
+        }
+
+    }
+
+    if(animItemsMoveInverse.length > 0) {
+        window.addEventListener('scroll', animOnscrollMoveInverse)
+        function animOnscrollMoveInverse() {
+            for(let index = 0; index < animItemsMoveInverse.length; index++) {
+                const animItem = animItemsMoveInverse[index];
+                const animItemHeight = animItem.offsetHeight;
+                const animItemOffset = offset(animItem).top;
+                const animStart = 4;
+
+                let animItemPoint = window.innerHeight - animItemHeight / animStart;
+
+                if(animItemHeight > window.innerHeight) {
+                    animItemPoint = window.innerHeight - window.innerHeight / animStart;
+                }
+
+                if((pageYOffset > animItemOffset - animItemPoint) && pageYOffset  < (animItemOffset + animItemHeight)) {
+                    animItem.classList.add('cat-hand-move-inverse');
+                } else {
+                    animItem.classList.remove('cat-hand-move-inverse');
+                }
+            }
+        }
+
+    }
+
+    if(animItemsMoveEnd.length > 0) {
+        window.addEventListener('scroll', animOnscrollMoveEnd)
+        function animOnscrollMoveEnd() {
+            for(let index = 0; index < animItemsMoveEnd.length; index++) {
+                const animItem = animItemsMoveEnd[index];
+                const animItemHeight = animItem.offsetHeight;
+                const animItemOffset = offset(animItem).top;
+                const animStart = 4;
+
+                let animItemPoint = window.innerHeight - animItemHeight / animStart;
+
+                if(animItemHeight > window.innerHeight) {
+                    animItemPoint = window.innerHeight - window.innerHeight / animStart;
+                }
+
+                if((pageYOffset > animItemOffset - animItemPoint) && pageYOffset  < (animItemOffset + animItemHeight)) {
+                    animItem.classList.add('cat-hand-move-end');
+                } else {
+                    animItem.classList.remove('cat-hand-move-end');
+                }
+            }
+        }
+
+    }
+
+
+    function offset(el) {
+        const rect = el.getBoundingClientRect(),
+            scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
+            scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        return {top: rect.top + scrollTop, left: rect.left +scrollLeft}
+    }
+
+    // cat.addEventListener('click', () => {
+    //     cat.classList.add(['animate__animated","animate__backInDown'])
+    // })
+})()
